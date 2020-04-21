@@ -23,6 +23,10 @@ public class Reshenie {
         return ans;
     }
 
+    public long C(int n, int k){
+        long an = factorial1(n)/(factorial1(n-k)*factorial1(k));
+        return an;
+    }
 
     Vector<String> binom(double p, int n, int[] k){
         Vector<String> answ = new Vector<String>();
@@ -47,8 +51,8 @@ public class Reshenie {
         answ.add("Гипергеометрический закон распределения");
         for(int i=0; i<k.length;i++){
             int q = N-n;
-            double ans =(double) (factorial(K)/(factorial(K-k[i])*factorial(k[i])))*(double)(factorial(N-K)/(factorial(N-K-n+k[i])*factorial(n-k[i])))
-                    /(double)(factorial1(N)/(factorial1((N-n))*factorial(n)));
+            double ans =(double) (C(K, k[i]))*(double)(C(N-K, n-k[i]))
+                    /(double)(C(N, n));
             answ.add("Вероятность "+k[i]+": "+ans);
         }
         double a = N;
@@ -105,3 +109,4 @@ public class Reshenie {
     }
 
 }
+

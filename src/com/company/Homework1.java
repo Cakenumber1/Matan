@@ -7,7 +7,7 @@ public class Homework1 {
             System.out.println(in.elementAt(i));
         }
     }
-    public void dofirsthomework(){
+    public void dohomework(){
         task1();
         task2();
         task3();
