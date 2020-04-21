@@ -1,13 +1,14 @@
 package com.company;
+import java.util.Vector;
 
-public class Reshenie {public int factorial(int n)
-{
-    int ret = 1;
-    for (int i = 1; i <= n; ++i) ret *= i;
-    return ret;
-}
-    public long factorial1(int n)
-    {
+public class Reshenie {
+
+    public int factorial(int n){
+        int ret = 1;
+        for (int i = 1; i <= n; ++i) ret *= i;
+        return ret;
+    }
+    public long factorial1(int n){
         long ret = 1;
         for (int i = 1; i <= n; ++i) ret *= i;
         return ret;
@@ -22,8 +23,10 @@ public class Reshenie {public int factorial(int n)
         return ans;
     }
 
-    void binom(double p, int n, int[] k){
-        System.out.println("Биноминальный закон распределения");
+
+    Vector<String> binom(double p, int n, int[] k){
+        Vector<String> answ = new Vector<String>();
+        answ.add("Биноминальный закон распределения");
         double Mx  = 0;
         double Mxquad  = 0;
         double Dx=0;
@@ -34,63 +37,71 @@ public class Reshenie {public int factorial(int n)
             Mxquad += a*k[i]*k[i];
         }
         Dx = Mxquad -Math.pow(Mx, 2);
-        System.out.println("Математическое ожидание: "+Mx);
-        System.out.println("Дисперсия: "+Dx);
+        answ.add("Математическое ожидание: "+Mx);
+        answ.add("Дисперсия: "+Dx);
+        return answ;
     }
 
-    void gipergeom(int N, int K, int n, int[] k){
-        System.out.println("Гипергеометрический закон распределения");
+    Vector<String> gipergeom(int N, int K, int n, int[] k){
+        Vector<String> answ = new Vector<String>();
+        answ.add("Гипергеометрический закон распределения");
         for(int i=0; i<k.length;i++){
             int q = N-n;
             double ans =(double) (factorial(K)/(factorial(K-k[i])*factorial(k[i])))*(double)(factorial(N-K)/(factorial(N-K-n+k[i])*factorial(n-k[i])))
                     /(double)(factorial1(N)/(factorial1((N-n))*factorial(n)));
-            System.out.println("Вероятность "+k[i]+": "+ans);
+            answ.add("Вероятность "+k[i]+": "+ans);
         }
         double a = N;
         double b = K;
         double c = n;
         double Mx1  = b*c/a;
         double Dx1 = ((b*c)/a)*((a-c)/b)*((a-b)/(a-1));
-        System.out.println("Математическое ожидание: " + Mx1);
-        System.out.println("Дисперсия: "+ Dx1);
+        answ.add("Математическое ожидание: " + Mx1);
+        answ.add("Дисперсия: "+ Dx1);
+        return answ;
     }
 
-    void Poisson (double p, int k){
+    Vector<String> Poisson (double p, int k){
+        Vector<String> answ = new Vector<String>();
         double a = (Math.pow(p, k)/factorial(k))*Math.pow(Math.exp(1), -p);
-        System.out.println("Распределение Пуассона");
-        System.out.println("Ответ: "+a);
+        answ.add("Распределение Пуассона");
+        answ.add("Ответ: "+a);
+        return answ;
     }
 
-    void geom (double p){
+    Vector<String> geom (double p){
+        Vector<String> answ = new Vector<String>();
         double q = 1 - p;
         double Dx=q/(p*p);
         double Mx  = q/p;
-        System.out.println("Геометрический закон распределения");
-        System.out.println("Математическое ожидание: "+Mx);
-        System.out.println("Дисперсия: "+Dx);
+        answ.add("Геометрический закон распределения");
+        answ.add("Математическое ожидание: "+Mx);
+        answ.add("Дисперсия: "+Dx);
+        return answ;
     }
-    void geom(double p, int[] k){
+    Vector<String> geom(double p, int[] k){
+        Vector<String> answ = new Vector<String>();
         for(int i=0; i<k.length;i++){
             double q = 1-p;
             double ans = Math.pow(q, k[i])*p;
-            System.out.println("Вероятность "+k[i]+":"+ans);
+            answ.add("Вероятность "+k[i]+":"+ans);
         }
+        return answ;
     }
 
-    void kusf(int[] a, double[] b) {
+    Vector<String> kusf(int[] a, double[] b) {
+        Vector<String> answ = new Vector<String>();
         double Mx = 0;
         double s = 0;
         for (int i = 0; i < a.length; i++) {
             double q = b[i]-s;
             Mx+=a[i]*q;
             s+=b[i];
-            System.out.println(a[i]+" "+b[i]+" "+Mx+" "+s+" "+q);
+            answ.add(a[i]+" "+b[i]+" "+Mx+" "+s+" "+q);
         }
-        System.out.println("Распределения для кусочнозаданной функции");
-        System.out.println("Математическое ожидание: "+Mx);
-    }
-    void errorfunc(){
-
+        answ.add("Распределения для кусочнозаданной функции");
+        answ.add("Математическое ожидание: "+Mx);
+        return answ;
     }
 
 }
